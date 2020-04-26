@@ -37,10 +37,10 @@ Description: Compiles your code and generates .class files inside the BUILD fold
 
 ```commandline
 ant run -buildfile wordProcessorProg/src/build.xml \
--Dinput="inputFiles/input.txt" \
--DacceptableWordsFile="src/BUILD/resultFiles/acceptable_words.txt" \
+-DinputFile="inputFiles/input.txt" \
+-DacceptableWordsFile="inputFiles/acceptable_words.txt" \
 -Dk=2 \
--DtopKOutputFile="src/BUILD/resultFilestopk_output.txt" \
+-DtopKOutputFile="src/BUILD/resultFiles/topk_output.txt" \
 -DspellCheckOutputFile="src/BUILD/resultFiles/spellcheck_output.txt"
 ```
 
