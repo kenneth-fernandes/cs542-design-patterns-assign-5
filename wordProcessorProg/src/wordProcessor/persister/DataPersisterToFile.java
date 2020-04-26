@@ -51,7 +51,6 @@ public class DataPersisterToFile implements DataPersisterToFileI {
      * @param dataStr - The data of type String
      */
     public void writeLine(String dataStr) throws IOException {
-        System.out.println(dataStr);
         buffrdWriter.write(dataStr.trim());
     }
 

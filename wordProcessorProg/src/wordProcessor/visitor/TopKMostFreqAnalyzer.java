@@ -1,7 +1,6 @@
 package wordProcessor.visitor;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -17,7 +16,6 @@ public class TopKMostFreqAnalyzer implements VisitorI {
 
     private int kValue;
     private ResultsI results;
-    private Map<String, Integer> wrdFreqMap = new HashMap<>();
 
     public TopKMostFreqAnalyzer(int inKValue, ResultsI inResults) {
         kValue = inKValue;
@@ -27,10 +25,12 @@ public class TopKMostFreqAnalyzer implements VisitorI {
     @Override
     public void visit(MyElement element) {
 
+        Map<String, Integer> wrdFreqMap = new HashMap<>();
         Iterator<String> iterator = element.getIterator();
+
         while (iterator.hasNext()) {
 
-            String word = iterator.next().toLowerCase();
+            String word = iterator.next().trim().toLowerCase();
 
             if (wrdFreqMap.containsKey(word)) {
                 wrdFreqMap.put(word, wrdFreqMap.get(word) + 1);
@@ -38,9 +38,8 @@ public class TopKMostFreqAnalyzer implements VisitorI {
                 wrdFreqMap.put(word, 1);
             }
         }
-        Comparator<String> comparator = new ValueComparator(wrdFreqMap);
 
-        TreeMap<String, Integer> sortedWrdFreqTMap = new TreeMap<String, Integer>(comparator);
+        TreeMap<String, Integer> sortedWrdFreqTMap = new TreeMap<String, Integer>(new ValueComparator(wrdFreqMap));
 
         sortedWrdFreqTMap.putAll(wrdFreqMap);
 
