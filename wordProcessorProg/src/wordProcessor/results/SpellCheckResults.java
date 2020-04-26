@@ -1,5 +1,7 @@
 package wordProcessor.results;
 
+import java.io.IOException;
+
 /**
  * 
  */
@@ -12,10 +14,14 @@ public class SpellCheckResults implements ResultsI {
     }
 
     @Override
-    public void writeToFile() {
-        // TODO Auto-generated method stub
+    public void writeToFile() throws IOException {
+        
 
     }
+    
+    @Override
+    public void storeResults(String result) {
 
+    }
     
 }

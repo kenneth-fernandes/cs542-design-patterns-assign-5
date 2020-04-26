@@ -1,10 +1,10 @@
 package wordProcessor.results;
 
-/**
- * 
- */
-public interface ResultsI {
+import java.io.IOException;
 
-    public void writeToFile();
+public interface ResultsI {
+    public void writeToFile() throws IOException;
+    
+    public void storeResults(String result);
 
 }
