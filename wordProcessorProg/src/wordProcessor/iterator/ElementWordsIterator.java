@@ -23,8 +23,7 @@ public class ElementWordsIterator implements IteratorI {
     @Override
     public Object next() {
         if (this.hasNext()) {
-            index += 1;
-            return wordsList.get(index);
+            return wordsList.get(index++);
         }
         return null;
     }

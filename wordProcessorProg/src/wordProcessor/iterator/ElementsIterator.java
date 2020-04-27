@@ -23,8 +23,7 @@ public class ElementsIterator implements IteratorI {
     @Override
     public Object next() {
         if (this.hasNext()) {
-            index += 1;
-            return myArrayList.get(index);
+            return myArrayList.get(index++);
         }
         return null;
     }
