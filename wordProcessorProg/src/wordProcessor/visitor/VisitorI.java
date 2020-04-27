@@ -1,9 +1,15 @@
 package wordProcessor.visitor;
 
-import wordProcessor.element.ElementI;
 import wordProcessor.element.MyElement;
 
+/**
+ * 
+ */
 public interface VisitorI {
 
+    /**
+     * 
+     * @param element
+     */
     public void visit(MyElement element);
 }

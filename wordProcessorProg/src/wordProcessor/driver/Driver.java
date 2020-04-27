@@ -1,15 +1,21 @@
 package wordProcessor.driver;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import wordProcessor.arraylist.MyArrayList;
 import wordProcessor.element.ElementI;
+import wordProcessor.element.MyArrayList;
 import wordProcessor.results.ResultsI;
 import wordProcessor.results.SpellCheckResults;
 import wordProcessor.results.TopKFreqWordsResults;
 import wordProcessor.util.fileprocess.FileProcessor;
 import wordProcessor.util.fileprocess.FileProcessorI;
+import wordProcessor.util.validator.ValidatorFetcher;
+import wordProcessor.util.validator.ValidatorFetcherI;
+import wordProcessor.util.validator.ValidatorUtil;
+import wordProcessor.util.validator.ValidatorUtilI;
+import wordProcessor.util.validator.exceptions.InvalidAccptbleWrdsFileFormatException;
+import wordProcessor.util.validator.exceptions.InvalidInputFileFormatException;
+import wordProcessor.util.validator.exceptions.InvalidInputParamsException;
 import wordProcessor.visitor.SpellCheckAnalyzer;
 import wordProcessor.visitor.TopKMostFreqAnalyzer;
 import wordProcessor.visitor.VisitorI;
@@ -21,7 +27,8 @@ import wordProcessor.visitor.VisitorI;
  */
 public class Driver {
 
-	private static void runAnalysis(FileProcessorI fileProcessor, VisitorI... visitors) throws IOException {
+	private static void runAnalysis(FileProcessorI fileProcessor, VisitorI... visitors)
+			throws IOException, InvalidInputFileFormatException {
 		ElementI myArrayList = new MyArrayList.Builder().withFileProcessor(fileProcessor).build();
 
 		for (VisitorI visitor : visitors) {
@@ -38,11 +45,14 @@ public class Driver {
 	public static void main(String[] args) {
 		try {
 
-			String inputFilename = "";
-			String topKOutputFilename = "";
+			// Stores the interface of ValidatorUtilI for ValidatorUtil instance
+			ValidatorUtilI validatrUtilObj = ValidatorUtil.getInstance();
+			// Stores the interface of ValidatorFetcherI for ValidatorFetcher instance
+			ValidatorFetcherI validatrFetchrObj = ValidatorFetcher.getInstance();
+
+			String inputFilename = "", topKOutputFilename = "", spellCheckOutputFilename = "",
+					acceptableWordsFilename = "";
 			int k = 0;
-			String spellCheckOutputFilename = "";
-			String acceptableWordsFilename = "";
 
 			final int REQUIRED_NUMBER_OF_ARGS = 5;
 			if ((args.length != REQUIRED_NUMBER_OF_ARGS) || (args[0].equals("${inputFile}"))
@@ -53,6 +63,11 @@ public class Driver {
 
 				System.exit(0);
 			} else {
+
+				validatrUtilObj.validateInputParameters("Input-Parameters Error",
+						validatrFetchrObj.filePathValidation(args[0]), validatrFetchrObj.filePathValidation(args[1]),
+						validatrFetchrObj.kValueValidation(args[2]), validatrFetchrObj.filePathValidation(args[3]),
+						validatrFetchrObj.filePathValidation(args[4]));
 
 				inputFilename = args[0];
 				acceptableWordsFilename = args[1];
@@ -75,6 +90,9 @@ public class Driver {
 
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (InvalidInputParamsException | InvalidInputFileFormatException
+				| InvalidAccptbleWrdsFileFormatException e) {
+			System.out.println(e.getMessage());
 		}
 	}
 }
