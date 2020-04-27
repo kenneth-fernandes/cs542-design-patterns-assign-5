@@ -2,8 +2,9 @@ package wordProcessor.element;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 
+import wordProcessor.iterator.ElementWordsIterator;
+import wordProcessor.iterator.IteratorI;
 import wordProcessor.visitor.VisitorI;
 
 public class MyElement implements ElementI {
@@ -11,7 +12,7 @@ public class MyElement implements ElementI {
     private ArrayList<String> wordsList;
 
     public MyElement(String inSentence) {
-        wordsList = new ArrayList<String>(Arrays.asList(inSentence.split(" ")));
+        wordsList = new ArrayList<String>(Arrays.asList(inSentence.split("\\s")));
     }
 
     @Override
@@ -20,7 +21,7 @@ public class MyElement implements ElementI {
     }
 
     @Override
-    public Iterator<String> getIterator() {
-        return wordsList.iterator();
+    public IteratorI getIterator() {
+        return new ElementWordsIterator(wordsList);
     }
 }

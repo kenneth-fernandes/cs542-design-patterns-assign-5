@@ -1,13 +1,12 @@
 package wordProcessor.element;
 
-import java.util.Iterator;
-
+import wordProcessor.iterator.IteratorI;
 import wordProcessor.visitor.VisitorI;
 
 public interface ElementI {
 
     public void accept(VisitorI visitor);
 
-    public Iterator<?> getIterator();
+    public IteratorI getIterator();
 
 }

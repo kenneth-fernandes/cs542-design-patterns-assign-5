@@ -2,9 +2,10 @@ package wordProcessor.element;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import wordProcessor.element.ElementI;
+import wordProcessor.iterator.ElementsIterator;
+import wordProcessor.iterator.IteratorI;
 import wordProcessor.util.fileprocess.FileProcessorI;
 import wordProcessor.util.validator.ValidatorFetcher;
 import wordProcessor.util.validator.ValidatorFetcherI;
@@ -30,7 +31,7 @@ public class MyArrayList implements ElementI {
             ValidatorFetcherI validatrFetchrObj = ValidatorFetcher.getInstance();
 
             while ((line = fileProcessor.readLine()) != null) {
-                
+
                 validatrUtilObj.validateInputFileData("Input-file data error",
                         validatrFetchrObj.inputFileFormatValidn(line));
 
@@ -64,14 +65,14 @@ public class MyArrayList implements ElementI {
 
     @Override
     public void accept(VisitorI visitor) {
-        Iterator<ElementI> elemIterator = getIterator();
+        IteratorI elemIterator = this.getIterator();
         while (elemIterator.hasNext()) {
-            elemIterator.next().accept(visitor);
+            ((ElementI) elemIterator.next()).accept(visitor);
         }
     }
 
-    public Iterator<ElementI> getIterator() {
-        return myArrayList.iterator();
+    public IteratorI getIterator() {
+        return new ElementsIterator(myArrayList);
     }
 
 }

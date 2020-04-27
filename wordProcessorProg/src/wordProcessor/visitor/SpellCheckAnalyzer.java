@@ -2,9 +2,9 @@ package wordProcessor.visitor;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 
-import wordProcessor.element.MyElement;
+import wordProcessor.element.ElementI;
+import wordProcessor.iterator.IteratorI;
 import wordProcessor.results.ResultsI;
 import wordProcessor.util.fileprocess.FileProcessor;
 import wordProcessor.util.fileprocess.FileProcessorI;
@@ -42,14 +42,14 @@ public class SpellCheckAnalyzer implements VisitorI {
     }
 
     @Override
-    public void visit(MyElement element) {
+    public void visit(ElementI element) {
 
-        Iterator<String> wordIterator = element.getIterator();
+        IteratorI wordIterator = element.getIterator();
 
         while (wordIterator.hasNext()) {
             ArrayList<String> spellCheckWrdsLst = new ArrayList<String>();
             String wrongWrd = "";
-            String word = wordIterator.next().trim().toLowerCase();
+            String word = ((String) wordIterator.next()).trim().toLowerCase();
 
             for (String accepatbleWrd : acceptableWrdsLst) {
 

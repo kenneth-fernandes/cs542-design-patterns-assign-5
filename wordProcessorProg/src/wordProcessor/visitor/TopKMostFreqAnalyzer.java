@@ -2,11 +2,11 @@ package wordProcessor.visitor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 
-import wordProcessor.element.MyElement;
+import wordProcessor.element.ElementI;
+import wordProcessor.iterator.IteratorI;
 import wordProcessor.results.ResultsI;
 
 /**
@@ -23,14 +23,14 @@ public class TopKMostFreqAnalyzer implements VisitorI {
     }
 
     @Override
-    public void visit(MyElement element) {
+    public void visit(ElementI element) {
 
         Map<String, Integer> wrdFreqMap = new HashMap<>();
-        Iterator<String> iterator = element.getIterator();
+        IteratorI iterator = element.getIterator();
 
         while (iterator.hasNext()) {
 
-            String word = iterator.next().trim().toLowerCase();
+            String word = ((String) iterator.next()).trim().toLowerCase();
 
             if (wrdFreqMap.containsKey(word)) {
                 wrdFreqMap.put(word, wrdFreqMap.get(word) + 1);
