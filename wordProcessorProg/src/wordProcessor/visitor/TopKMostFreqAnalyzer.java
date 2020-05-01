@@ -16,6 +16,9 @@ public class TopKMostFreqAnalyzer implements VisitorI {
 
     private int kValue;
     private ResultsI results;
+    private Map<String, Integer> wrdFreqMap = new HashMap<>();
+    private TreeMap<String, Integer> sortedWrdFreqTMap;
+    ArrayList<String> resultLst = new ArrayList<>();
 
     public TopKMostFreqAnalyzer(int inKValue, ResultsI inResults) {
         kValue = inKValue;
@@ -25,12 +28,19 @@ public class TopKMostFreqAnalyzer implements VisitorI {
     @Override
     public void visit(ElementI element) {
 
-        Map<String, Integer> wrdFreqMap = new HashMap<>();
-        IteratorI iterator = element.getIterator();
+        sortWordsByFrequencyCount(element.getIterator());
 
-        while (iterator.hasNext()) {
+        storeTopKMostFrequentWords();
 
-            String word = ((String) iterator.next()).trim().toLowerCase();
+        clearContents();
+
+    }
+
+    private void sortWordsByFrequencyCount(IteratorI wordIterator) {
+
+        while (wordIterator.hasNext()) {
+
+            String word = ((String) wordIterator.next()).trim().toLowerCase();
 
             if (wrdFreqMap.containsKey(word)) {
                 wrdFreqMap.put(word, wrdFreqMap.get(word) + 1);
@@ -38,12 +48,12 @@ public class TopKMostFreqAnalyzer implements VisitorI {
                 wrdFreqMap.put(word, 1);
             }
         }
-
-        TreeMap<String, Integer> sortedWrdFreqTMap = new TreeMap<String, Integer>(new ValueComparator(wrdFreqMap));
+        sortedWrdFreqTMap = new TreeMap<String, Integer>(new ValueComparator(wrdFreqMap));
 
         sortedWrdFreqTMap.putAll(wrdFreqMap);
+    }
 
-        ArrayList<String> resultLst = new ArrayList<>();
+    private void storeTopKMostFrequentWords() {
         int counter = 0;
         for (Map.Entry<String, Integer> entry : sortedWrdFreqTMap.entrySet()) {
             if (counter < kValue) {
@@ -52,10 +62,14 @@ public class TopKMostFreqAnalyzer implements VisitorI {
             } else {
                 break;
             }
-
         }
         results.storeResults(resultLst.toString());
+    }
 
+    private void clearContents() {
+        wrdFreqMap.clear();
+        sortedWrdFreqTMap.clear();
+        resultLst.clear();
     }
 
 }
