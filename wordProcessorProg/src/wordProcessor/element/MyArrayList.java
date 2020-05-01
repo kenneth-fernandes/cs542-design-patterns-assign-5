@@ -35,13 +35,22 @@ public class MyArrayList implements ElementI {
                 validatrUtilObj.validateInputFileData("Input-file data error",
                         validatrFetchrObj.inputFileFormatValidn(line));
 
+                /*
+                 * char[] lineCharArr = line.toCharArray(); for (char lineChar : lineCharArr) {
+                 * if (lineChar == '.') { index += 1; } else { temp = String.copyValueOf() } }
+                 */
+
                 if (line.indexOf(".") >= 0) {
-                    String[] lineArr = line.trim().split("\\.");
-                    temp = temp.concat(lineArr[0]);
-                    myArrayList.add(new MyElement(temp));
-                    if (lineArr.length > 1) {
-                        temp = lineArr[1];
-                    } else {
+                    String[] lineArr = line.split("\\.");
+                    for (int i = 0; i < lineArr.length - 1; i += 1) {
+                        System.out.println(lineArr[i].trim());
+                        myArrayList.add(new MyElement(lineArr[i].trim()));
+                    }
+                    temp = temp.concat(lineArr[lineArr.length - 1]);
+
+                    if (line.indexOf(".") == line.length() - 1) {
+                        System.out.println(temp.trim());
+                        myArrayList.add(new MyElement(temp.trim()));
                         temp = "";
                     }
                 } else {
@@ -49,8 +58,10 @@ public class MyArrayList implements ElementI {
                 }
             }
 
-            if (!temp.isEmpty())
-                myArrayList.add(new MyElement(temp));
+            if (!temp.isEmpty()) {
+                System.out.println(temp.trim());
+                myArrayList.add(new MyElement(temp.trim()));
+            }
 
             fileProcessor.closeFile();
 

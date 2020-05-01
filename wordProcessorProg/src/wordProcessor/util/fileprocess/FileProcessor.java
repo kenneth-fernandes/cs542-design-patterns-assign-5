@@ -53,7 +53,7 @@ public class FileProcessor implements FileProcessorI {
 	 */
 	public String readLine() throws IOException {
 		String line = null;
-		return ((line = bufferedReader.readLine()) != null) ? line.trim() : line;
+		return ((line = bufferedReader.readLine()) != null) ? line : null;
 	}
 
 	/**
