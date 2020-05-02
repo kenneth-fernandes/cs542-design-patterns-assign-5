@@ -66,6 +66,9 @@ public class DataPersisterToFile implements DataPersisterToFileI {
             buffrdWriter.flush();
             if (buffrdWriter != null)
                 buffrdWriter.close();
+            if (fileWriter != null)
+                fileWriter.close();
+
         } catch (IOException e) {
             throw e;
         }
@@ -73,7 +76,7 @@ public class DataPersisterToFile implements DataPersisterToFileI {
 
     @Override
     public String toString() {
-        return "Class: PersistToFile, Data Members : [ buffrdWriter:" + buffrdWriter + ", file: " + file
-                + ", fileWriter:" + fileWriter + "]";
+        return "Class: PersistToFile, Data Members : [ buffrdWriter:" + buffrdWriter.toString() + ", file: "
+                + file.toString() + ", fileWriter:" + fileWriter.toString() + "]";
     }
 }
