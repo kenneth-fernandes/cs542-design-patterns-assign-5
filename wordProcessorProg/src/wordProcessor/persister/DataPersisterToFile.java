@@ -2,7 +2,6 @@ package wordProcessor.persister;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -27,12 +26,10 @@ public class DataPersisterToFile implements DataPersisterToFileI {
      * DataPersisterToFile constructor that intializes fileWriter and bufferedWriter
      * 
      * @param filePath - Output file path
-     * @throws FileNotFoundException - Exception caused while Input/Output thrown by
-     *                               the function
-     * @throws IOException           - Exception caused while Input/Output thrown by
-     *                               the function
+     * @throws IOException - Exception caused while Input/Output thrown by the
+     *                     function
      */
-    public DataPersisterToFile(String filePath) throws FileNotFoundException, IOException {
+    public DataPersisterToFile(String filePath) throws IOException {
         try {
             file = new File(filePath);
             if (!file.exists()) {
@@ -40,7 +37,7 @@ public class DataPersisterToFile implements DataPersisterToFileI {
             }
             fileWriter = new FileWriter(file);
             buffrdWriter = new BufferedWriter(fileWriter);
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             throw e;
         }
     }
