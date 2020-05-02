@@ -59,10 +59,10 @@ ant run -buildfile wordProcessorProg/src/build.xml \
   - TreeMap<String, Integer> - For storing sorted words with frequency count after passing the above to the Comparator.
 
   - ArrayList<String> - 
-    -> For storing acceptable words list.
-    -> For storing the final Word frequency result for a particular sentence
-    -> For storing the list of spell check words list for the misspelled word
-    -> For storing the the final result for Spell check analysis on a particular sentence
+    - For storing acceptable words list.
+    - For storing the final Word frequency result for a particular sentence
+    - For storing the list of spell check words list for the misspelled word
+    - For storing the the final result for Spell check analysis on a particular sentence
 
 - ArrayList<ElementI> - For storing the ArrayList of type ElementI
 
