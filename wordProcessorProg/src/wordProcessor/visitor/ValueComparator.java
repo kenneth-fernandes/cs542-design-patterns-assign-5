@@ -7,9 +7,11 @@ import java.util.HashMap;
 /**
  * Class implementing the methods of Comparator interface to compare frequency
  * of the words
+ * 
+ * @author - Kenneth Peter Fernandes
  */
 class ValueComparator implements Comparator<String> {
-
+    // Stores the word frequncy HashMap
     Map<String, Integer> wordFrequencyMap = new HashMap<String, Integer>();
 
     /**
@@ -31,5 +33,10 @@ class ValueComparator implements Comparator<String> {
     public int compare(String strVal1, String strVal2) {
 
         return wordFrequencyMap.get(strVal1) >= wordFrequencyMap.get(strVal2) ? -1 : 1;
+    }
+
+    @Override
+    public String toString() {
+        return "Class: ValueComparator, DataMembers: [ wordFrequencyMap: " + wordFrequencyMap.toString() + " ]";
     }
 }
