@@ -48,6 +48,8 @@ public class Driver {
 	}
 
 	/**
+	 * The functions persists the analysis of finding top K most frequent words and
+	 * checking spelling of the words to output file
 	 * 
 	 * @param analysisResults - Array of results each persisting the results for
 	 *                        sentence processing anaylysis
@@ -57,6 +59,9 @@ public class Driver {
 		for (ResultsI results : analysisResults) {
 			results.writeToFile();
 		}
+
+		System.out.println("The program execution was successful. Analysis results have been stored to output files.");
+		
 	}
 
 	public static void main(String[] args) {
@@ -114,9 +119,9 @@ public class Driver {
 			ResultsI spellCheckResults = new SpellCheckResults(spellCheckOutputFilename);
 			// The visitor object SpellCheckAnalyzer for analyzing the Words spell check
 			VisitorI spellCheckAnalyzer = new SpellCheckAnalyzer(acceptableWordsFilename, spellCheckResults);
-			//
+			// Invoking the function to run analysis
 			runAnalysis(fileProcessor, topKMostFreqAnalyzer, spellCheckAnalyzer);
-			//
+			// Invoking the function to persist the analysis results to output file
 			persistResults(topKFreqWordsResults, spellCheckResults);
 
 		} catch (IOException e) {
