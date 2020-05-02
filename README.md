@@ -49,7 +49,7 @@ ant run -buildfile wordProcessorProg/src/build.xml \
 ## Description:
 
 1. Assumption:
-  - Input file is well formatted containing sentences which contains characters 'A-Z', 'a-z', 'space and new lines' and 'period(.)'.
+  - Input file is well formatted containing sentences which contains characters 'A-Z', 'a-z', 'space' and 'period(.)'.
   - The last sentence in the Input file if does not ends with a period charater, the application considers it as sentence completion.
   - Acceptable words file is well formatted containing sentences which contains characters 'A-Z', 'a-z', 'new lines - (for reading words line-by-line)')'.
 
