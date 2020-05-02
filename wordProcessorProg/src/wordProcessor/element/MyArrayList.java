@@ -47,18 +47,18 @@ public class MyArrayList implements ElementI {
             ValidatorUtilI validatrUtilObj = ValidatorUtil.getInstance();
             // Stores the interface of ValidatorFetcherI for ValidatorFetcher instance
             ValidatorFetcherI validatrFetchrObj = ValidatorFetcher.getInstance();
-            
+
             /**
              * Processing the line read from the input file into sentences
              */
             while ((line = fileProcessor.readLine()) != null) {
                 // Validation of each line read for input file
                 validatrUtilObj.validateInputFileData("Input-file data error",
-                        validatrFetchrObj.inputFileFormatValidn(line));
+                        validatrFetchrObj.inputFileDataFormatValidn(line));
 
                 if (line.indexOf(".") >= 0) {
                     String[] lineArr = line.split("\\.");
-                    
+
                     for (int index = 0; index < lineArr.length - 1; index += 1) {
                         if (!sentence.trim().isEmpty()) {
                             lineArr[index] = sentence.concat(lineArr[index]);

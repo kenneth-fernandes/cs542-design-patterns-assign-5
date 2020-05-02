@@ -1,5 +1,7 @@
 package wordProcessor.util.validator;
 
+import wordProcessor.util.fileprocess.FileProcessorI;
+
 /**
  * ValidatorFetcherI interface - Contains the functions signature that performs
  * validations
@@ -27,14 +29,17 @@ public interface ValidatorFetcherI {
      */
     public ValidatorI kValueValidation(String input);
 
+    
+    public ValidatorI inputFileDataFormatValidn(String data);
+
     /**
-     * The function performs validation of input data format
+     * The function performs validation of input file format
      * 
-     * @param data - Data from the input file
-     * @return - The implemented interface ValidatorI performing the input data
+     * @param fileProcessor - Fileprocessor object of input file
+     * @return - The implemented interface ValidatorI performing the input file
      *         format validation
      */
-    public ValidatorI inputFileFormatValidn(String data);
+    public ValidatorI inputFileFormatValidn(FileProcessorI fileProcessor);
 
     /**
      * The function performs validation of acceptable words file data format
@@ -44,5 +49,7 @@ public interface ValidatorFetcherI {
      *         data format validation
      */
     public ValidatorI acceptbleWrdsFileFormatValidn(String data);
+
+    
 
 }

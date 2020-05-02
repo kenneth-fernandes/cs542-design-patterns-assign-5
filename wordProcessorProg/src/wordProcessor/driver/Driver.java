@@ -60,8 +60,8 @@ public class Driver {
 			results.writeToFile();
 		}
 
-		System.out.println(
-				"The program execution was successful. Analysis results have been persisted to output files.");
+		System.out
+				.println("The program execution was successful. Analysis results have been persisted to output files.");
 
 	}
 
@@ -104,6 +104,9 @@ public class Driver {
 				k = Integer.parseInt(args[2]);
 				topKOutputFilename = args[3];
 				spellCheckOutputFilename = args[4];
+
+				validatrUtilObj.validateInputFileData("Input-file error",
+						validatrFetchrObj.inputFileFormatValidn(new FileProcessor(inputFilename)));
 			}
 			// FileProcessor instance for reading sentences from the input file
 			FileProcessorI fileProcessor = new FileProcessor(inputFilename);

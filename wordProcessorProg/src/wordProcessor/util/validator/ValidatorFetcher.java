@@ -1,5 +1,8 @@
 package wordProcessor.util.validator;
 
+import java.io.IOException;
+
+import wordProcessor.util.fileprocess.FileProcessorI;
 import wordProcessor.util.validator.exceptions.InvalidAccptbleWrdsFileFormatException;
 import wordProcessor.util.validator.exceptions.InvalidInputFileFormatException;
 import wordProcessor.util.validator.exceptions.InvalidInputParamsException;
@@ -87,7 +90,7 @@ public class ValidatorFetcher implements ValidatorFetcherI {
      * @return - The implemented interface ValidatorI performing the input data
      *         format validation
      */
-    public ValidatorI inputFileFormatValidn(String data) {
+    public ValidatorI inputFileDataFormatValidn(String data) {
         return new ValidatorI() {
             @Override
             public void run() throws InvalidInputFileFormatException {
@@ -101,6 +104,32 @@ public class ValidatorFetcher implements ValidatorFetcherI {
                             "The data read from the input file is not of correct format that needs to contain "
                                     + "characters ranging from 'a-z', 'A-Z', periods and space.");
                 }
+            }
+        };
+    }
+
+    /**
+     * The function performs validation of input file format
+     * 
+     * @param fileProcessor - Fileprocessor object of input file
+     * @return - The implemented interface ValidatorI performing the input file
+     *         format validation
+     */
+    public ValidatorI inputFileFormatValidn(FileProcessorI fileProcessor) {
+        return new ValidatorI() {
+            @Override
+            public void run() throws InvalidInputFileFormatException, IOException {
+                boolean fileLineRead = false;
+                while (fileProcessor.readLine() != null) {
+                    if (fileLineRead) {
+                        fileProcessor.closeFile();
+                        throw new InvalidInputFileFormatException(
+                                "The data read from the input file is not of correct format that needs to contain "
+                                        + "characters ranging from 'a-z', 'A-Z', periods and space.");
+                    }
+                    fileLineRead = true;
+                }
+
             }
         };
     }
