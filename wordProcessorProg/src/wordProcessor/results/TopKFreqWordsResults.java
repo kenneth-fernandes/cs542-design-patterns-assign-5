@@ -30,7 +30,7 @@ public class TopKFreqWordsResults implements ResultsI {
 
     @Override
     public void storeResults(String inResult) {
-        result = result.concat(inResult.concat("\n"));
+        result = result.concat(inResult);
     }
 
 }

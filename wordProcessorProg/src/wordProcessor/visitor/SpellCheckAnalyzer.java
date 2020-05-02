@@ -71,11 +71,12 @@ public class SpellCheckAnalyzer implements VisitorI {
     @Override
     public void visit(ElementI element) {
         // Invoking function for performing spell check analysis
-        performSpellCheckAnalysis(element);
-        // Storing the final result for a sentence in SpellCheckResults
+        performSpellCheckAnalysis(element.getIterator());
+        // Invoking the function to store the final result for a sentence in
+        // SpellCheckResults
         storeSpellCheckAnalysis();
-        // Clearing the contents of data-structures which were used to for Spell Check
-        // analysis
+        // Invoking the function to clear the contents of data-structures which were
+        // used to for Spell Check analysis
         clearContents();
     }
 
@@ -104,10 +105,9 @@ public class SpellCheckAnalyzer implements VisitorI {
     /**
      * Performs spell check analysis on a sentence which is wrapped in element
      * 
-     * @param element - ElementI interface for MyElement instance
+     * @param wordIterator - Iterator for words list
      */
-    private void performSpellCheckAnalysis(ElementI element) {
-        wordIterator = element.getIterator();
+    private void performSpellCheckAnalysis(IteratorI wordIterator) {
         // Iteraing through words in a sentence
         while (wordIterator.hasNext()) {
             wrongWrd = "";
