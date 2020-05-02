@@ -64,13 +64,11 @@ public class MyArrayList implements ElementI {
                             lineArr[index] = sentence.concat(lineArr[index]);
                             sentence = "";
                         }
-                        System.out.println(lineArr[index].trim());
                         myArrayList.add(new MyElement(lineArr[index].trim()));
                     }
                     sentence = sentence.concat(lineArr[lineArr.length - 1]);
 
                     if (line.lastIndexOf(".") == line.length() - 1) {
-                        System.out.println(sentence.trim());
                         myArrayList.add(new MyElement(sentence.trim()));
                         sentence = "";
                     }
@@ -80,7 +78,6 @@ public class MyArrayList implements ElementI {
             }
 
             if (!sentence.trim().isEmpty()) {
-                System.out.println(sentence.trim());
                 myArrayList.add(new MyElement(sentence.trim()));
             }
             // CLosing the file processor
