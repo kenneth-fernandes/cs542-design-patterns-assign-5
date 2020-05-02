@@ -73,6 +73,7 @@ public class FileProcessor implements FileProcessorI {
 
 	@Override
 	public String toString() {
-		return "Class: ExpenseManagerInput, Data Members: [s]";
+		return "Class: ExpenseManagerInput, Data Members: [bufferedReader: " + bufferedReader.toString() + ", file: "
+				+ file.toString() + " ]";
 	}
 }
