@@ -58,12 +58,19 @@ public class MyArrayList implements ElementI {
 
                 if (line.indexOf(".") >= 0) {
                     String[] lineArr = line.split("\\.");
-                    for (int i = 0; i < lineArr.length - 1; i += 1) {
-                        myArrayList.add(new MyElement(lineArr[i].trim()));
+                    
+                    for (int index = 0; index < lineArr.length - 1; index += 1) {
+                        if (!sentence.trim().isEmpty()) {
+                            lineArr[index] = sentence.concat(lineArr[index]);
+                            sentence = "";
+                        }
+                        System.out.println(lineArr[index].trim());
+                        myArrayList.add(new MyElement(lineArr[index].trim()));
                     }
                     sentence = sentence.concat(lineArr[lineArr.length - 1]);
 
-                    if (line.indexOf(".") == line.length() - 1) {
+                    if (line.lastIndexOf(".") == line.length() - 1) {
+                        System.out.println(sentence.trim());
                         myArrayList.add(new MyElement(sentence.trim()));
                         sentence = "";
                     }
@@ -72,7 +79,8 @@ public class MyArrayList implements ElementI {
                 }
             }
 
-            if (!sentence.isEmpty()) {
+            if (!sentence.trim().isEmpty()) {
+                System.out.println(sentence.trim());
                 myArrayList.add(new MyElement(sentence.trim()));
             }
             // CLosing the file processor
