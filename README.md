@@ -1,4 +1,4 @@
-# CS542: Assignment 4
+# CS542: Assignment 5
 
 ## Name: Kenneth Peter Fernandes
 
@@ -49,10 +49,23 @@ ant run -buildfile wordProcessorProg/src/build.xml \
 ## Description:
 
 1. Assumption:
-  
+  - Input file is well formatted containing sentences which contains characters 'A-Z', 'a-z', 'space and new lines' and 'period(.)'.
+  - The last sentence in the Input file if does not ends with a period charater, the application considers it as sentence completion.
+  - Acceptable words file is well formatted containing sentences which contains characters 'A-Z', 'a-z', 'new lines - (for reading words line-by-line)')'.
 
 2. Data Structures:
-    
+  - Map<String, Integer> - For storing words with frequency count while reading each word.
+
+  - TreeMap<String, Integer> - For storing sorted words with frequency count after passing the above to the Comparator.
+
+  - ArrayList<String> - 
+    > For storing acceptable words list.
+    > For storing the final Word frequency result for a particular sentence
+    > For storing the list of spell check words list for the misspelled word
+    > For storing the the final result for Spell check analysis on a particular sentence
+
+- ArrayList<ElementI> - For storing the ArrayList of type ElementI
+
 
 3. External Materials:
     - N/A
@@ -64,6 +77,10 @@ ant run -buildfile wordProcessorProg/src/build.xml \
     - Follow the instruction as mentioned above.
 
 6. Code Working:
+  - Each line is read from the input file containing sentences where each sentence is then wrapped into a MyElement object and its interface ElementI is stored into the MyArrayList<ElementI>.
+  - Each element is fetched where two visitors, SpellCheckAnalyzer and TopKFrequentWordsAnalyzer, visit each element and perform the operations.
+  - While performing each operation, the result is stored the Results (SpellCheck and TopKFrequentWords).
+  - Once all the elements are visited, the stored output is persisted to respective output files.
  
 ---
 
