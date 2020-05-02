@@ -60,8 +60,9 @@ public class Driver {
 			results.writeToFile();
 		}
 
-		System.out.println("The program execution was successful. Analysis results have been stored to output files.");
-		
+		System.out.println(
+				"The program execution was successful. Analysis results have been persisted to output files.");
+
 	}
 
 	public static void main(String[] args) {
